@@ -14,7 +14,7 @@
 class SimplePNG
 {
 protected:
-	int x, y;
+	//int x, y;
 
 	int width, height, rowbytes;
 	png_byte color_type;
@@ -29,12 +29,12 @@ protected:
 	void dealloc();
 
 public:
+	SimplePNG();
 	~SimplePNG();
 
 	void read_png_file(char* file_name);
 	void write_png_file(char* file_name);
 	virtual void process_file(void) = 0;
-
 }; // class SimplePNG
 
 #endif

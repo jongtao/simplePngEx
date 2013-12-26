@@ -18,9 +18,9 @@ void PNG::process_file(void)
 	/* Reduce any 16-bits-per-sample images to 8-bits-per-sample */
 	png_set_strip_16(png_ptr);
 
-	for (y=0; y<height; y++) {
+	for (int y=0; y<height; y++) {
 		png_byte* row = row_pointers[y];
-		for (x=0; x<width; x++) {
+		for (int x=0; x<width; x++) {
 			png_byte* ptr = &(row[x*4]);
 			printf("Pixel at position [ %d - %d ] has RGBA values: %d - %d - %d - %d\n",
 					x, y, ptr[0], ptr[1], ptr[2], ptr[3]);

@@ -19,11 +19,18 @@ void SimplePNG::dealloc()
 	if(!row_pointers)
 		return;
 
-	for (y=0; y<height; y++)
+	for (int y=0; y<height; y++)
 		free(row_pointers[y]);
 	
 	free(row_pointers);
 } // dealloc()
+
+
+
+
+SimplePNG::SimplePNG(): row_pointers(NULL)
+{
+} // SimplePNG()
 
 
 
@@ -88,7 +95,7 @@ void SimplePNG::read_png_file(char* file_name)
 	else
 		rowbytes = width*4;
 
-	for (y=0; y<height; y++)
+	for (int y=0; y<height; y++)
 		row_pointers[y] = (png_byte*) malloc(rowbytes);
 
 	png_read_image(png_ptr, row_pointers);
@@ -146,11 +153,11 @@ void SimplePNG::write_png_file(char* file_name)
 		abort_("[write_png_file] Error during end of write");
 
 	png_write_end(png_ptr, NULL);
-
-	/* cleanup heap allocation */
-	for (y=0; y<height; y++)
+/*
+	// cleanup heap allocation
+	for (int y=0; y<height; y++)
 		free(row_pointers[y]);
 	free(row_pointers);
-
+*/
 	fclose(fp);
 }
